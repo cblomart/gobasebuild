@@ -18,7 +18,7 @@ RUN export CGO=0;\
     upx -qq --best --lzma ./bin/golint;\
     upx -qq --best --lzma ./bin/ineffassign;\
     upx -qq --best --lzma ./bin/gosec;\
-    cp ./bin/* /usr/local/bin/
+    cp ./bin/* /usr/local/bin/;\
     rm -rf ./*
 
 # install snyk
