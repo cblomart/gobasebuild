@@ -12,7 +12,14 @@ RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 RUN go get honnef.co/go/tools/cmd/gosimple;\
     go get golang.org/x/lint/golint;\
     go get github.com/gordonklaus/ineffassign;\
-    go get github.com/securego/gosec/cmd/gosec/...
+    go get github.com/securego/gosec/cmd/gosec/...;\
+    GOBIN=/usr/local/bin/ go install github.com/securego/gosec/cmd/gosec/...
+
+RUN export GOBIN=/usr/local/bin/;\
+    go install honnef.co/go/tools/cmd/gosimple;\
+    go install golang.org/x/lint/golint;\
+    go install github.com/gordonklaus/ineffassign;\
+    go install github.com/securego/gosec/cmd/gosec/...
 
 # install snyk
 RUN npm install -g snyk
