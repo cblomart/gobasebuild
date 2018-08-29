@@ -9,5 +9,4 @@ This image is based on official golang image and will add:
 
 To compress executables with upx
 
-  > # $executable is the path to the binary file
-  > upx -qq --best $executable
+  > upx -qq --best <executable>
