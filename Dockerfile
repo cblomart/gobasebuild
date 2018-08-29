@@ -9,17 +9,17 @@ RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # install golang checkers
-RUN go get honnef.co/go/tools/cmd/gosimple;\
-    go get golang.org/x/lint/golint;\
-    go get github.com/gordonklaus/ineffassign;\
-    go get github.com/securego/gosec/cmd/gosec/...;\
-    GOBIN=/usr/local/bin/ go install github.com/securego/gosec/cmd/gosec/...
-
-RUN export GOBIN=/usr/local/bin/;\
-    go install honnef.co/go/tools/cmd/gosimple;\
-    go install golang.org/x/lint/golint;\
-    go install github.com/gordonklaus/ineffassign;\
-    go install github.com/securego/gosec/cmd/gosec/...
+RUN export CGO=0;\
+    go get -ldflags '-s -w' -a honnef.co/go/tools/cmd/gosimple;\
+    go get -ldflags '-s -w' -a golang.org/x/lint/golint;\
+    go get -ldflags '-s -w' -a github.com/gordonklaus/ineffassign;\
+    go get -ldflags '-s -w' -a github.com/securego/gosec/cmd/gosec/...;\
+    upx -qq --best --lzma ./bin/gosimple;\
+    upx -qq --best --lzma ./bin/golint;\
+    upx -qq --best --lzma ./bin/ineffassign;\
+    upx -qq --best --lzma ./bin/gosec;\
+    cp ./bin/* /usr/local/bin/
+    rm -rf ./*
 
 # install snyk
 RUN npm install -g snyk
