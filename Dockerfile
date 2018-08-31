@@ -5,7 +5,12 @@ MAINTAINER cblomart@gmail.com
 # install nodejs
 RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -;\
     echo 'deb http://deb.nodesource.com/node_10.x stretch main' > /etc/apt/sources.list.d/nodesource.list;\
-    apt-get update && apt-get install -y nodejs upx;\
+    apt-get update && apt-get install -y\
+    nodejs upx\
+    upx-ucl\
+    musl\
+    musl-tools &&\
+    apt-get clean &&\
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # install golang checkers
@@ -20,3 +25,7 @@ RUN export CGO=0;\
     upx -qq --best --lzma ./bin/gosec;\
     cp ./bin/* /usr/local/bin/;\
     rm -rf ./*
+    
+# install docker
+RUN curl -Ss https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz | tar -C /tmp -zxf  -;\
+    mv /tmp/docker/docker /usr/local/bin/
