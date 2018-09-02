@@ -31,3 +31,7 @@ RUN export CGO=0;\
 # install docker
 RUN curl -Ss https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz | tar -C /tmp -zxf  -;\
     mv /tmp/docker/docker /usr/local/bin/
+
+# codeclimate cover reporter
+
+ADD https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 /usr/local/bin/test-reporter
