@@ -14,7 +14,8 @@ RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # install golang checkers
-RUN export CGO=0;\
+RUN set -ex;\
+    export CGO=0;\
     go get -ldflags '-s -w' -a honnef.co/go/tools/cmd/gosimple;\
     go get -ldflags '-s -w' -a golang.org/x/lint/golint;\
     go get -ldflags '-s -w' -a github.com/gordonklaus/ineffassign;\
@@ -27,10 +28,16 @@ RUN export CGO=0;\
     upx -qq --best --lzma ./bin/courtney;\
     cp ./bin/* /usr/local/bin/;\
     rm -rf ./*
-    
-# install docker
-RUN curl -Ss https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz | tar -C /tmp -zxf  -;\
-    mv /tmp/docker/docker /usr/local/bin/
+
+# Install Docker
+RUN set -ex \
+  && export DOCKER_VERSION=$(curl -sf 3 https://download.docker.com/linux/static/stable/x86_64/ | grep -o -e 'docker-[.0-9]*-ce\.tgz' | sort -r | head -n 1) \
+  && DOCKER_URL="https://download.docker.com/linux/static/stable/x86_64/${DOCKER_VERSION}" \
+  && echo Docker URL: $DOCKER_URL \
+  && curl -Ssf https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz | tar -C /tmp -zxf  - \
+  && mv /tmp/docker/docker /usr/local/bin/ \
+  && which docker \
+  && (docker version || true)
 
 # codeclimate cover reporter
 
