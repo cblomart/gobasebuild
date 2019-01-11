@@ -31,7 +31,7 @@ RUN set -ex;\
 
 # Install Docker
 RUN set -ex \
-  && export DOCKER_VERSION=$(curl -sf 3 https://download.docker.com/linux/static/stable/x86_64/ | grep -o -e 'docker-[.0-9]*-ce\.tgz' | sort -r | head -n 1) \
+  && export DOCKER_VERSION=$(curl -sf 3 https://download.docker.com/linux/static/stable/x86_64/ | grep -o -e 'docker-[.0-9]*(-ce)?\.tgz' | sort -r | head -n 1) \
   && DOCKER_URL="https://download.docker.com/linux/static/stable/x86_64/${DOCKER_VERSION}" \
   && echo Docker URL: $DOCKER_URL \
   && curl -Ssf https://download.docker.com/linux/static/stable/x86_64/docker-18.06.1-ce.tgz | tar -C /tmp -zxf  - \
