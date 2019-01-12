@@ -18,7 +18,7 @@ RUN export UPX_VERSION=$(curl -sf "https://api.github.com/repos/upx/upx/releases
     && UPX_URL="https://github.com/upx/upx/releases/download/v${UPX_VERSION}/upx-${UPX_VERSION}-amd64_linux.tar.xz" \
     && echo UPX URL: $UPX_URL \
     && curl -SsfL $UPX_URL | tar -C /tmp -Jxf - \
-    && mv /tmp/upx-${UPX_VERSION}-amd64_linux/upx /usr/local/bin/ 
+    && mv /tmp/upx-${UPX_VERSION}-amd64_linux/upx /usr/local/bin/ \
     && rm -rf /tmp/upx-${UPX_VERSION}-amd64_linux
 
 # install the latest version of staticcheck
