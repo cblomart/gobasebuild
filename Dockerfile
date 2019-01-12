@@ -20,11 +20,11 @@ RUN export CGO=0;\
     go get -ldflags '-s -w' -a github.com/gordonklaus/ineffassign;\
     go get -ldflags '-s -w' -a github.com/securego/gosec/cmd/gosec/...;\
     go get -ldflags '-s -w' -a github.com/dave/courtney;\
-    upx -qq --best --lzma ./bin/gosimple;\
-    upx -qq --best --lzma ./bin/golint;\
-    upx -qq --best --lzma ./bin/ineffassign;\
-    upx -qq --best --lzma ./bin/gosec;\
-    upx -qq --best --lzma ./bin/courtney;\
+    upx -qq --lzma ./bin/gosimple;\
+    upx -qq --lzma ./bin/golint;\
+    upx -qq --lzma ./bin/ineffassign;\
+    upx -qq --lzma ./bin/gosec;\
+    upx -qq --lzma ./bin/courtney;\
     cp ./bin/* /usr/local/bin/;\
     rm -rf ./*
 
