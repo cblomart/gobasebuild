@@ -29,11 +29,6 @@ RUN export STATICCHECK_VERSION=$(curl -sf "https://api.github.com/repos/dominikh
     && chmod +x /usr/local/bin/staticcheck \
     && upx -qq --best --lzma /usr/local/bin/staticcheck
 
-# install minio
-RUN wget -q https://dl.minio.io/client/mc/release/linux-amd64/mc -O /usr/local/bin/mc \
-    && chmod 777 /usr/local/bin/mc
-    && upx -qq --best -lzma /usr/local/bin/mc
-
 # install golang checkers
 RUN export CGO=0;\
     go get -ldflags '-s -w' -a github.com/cblomart/git-version;\
@@ -61,3 +56,8 @@ RUN export DOCKER_VERSION=$(curl -sf https://download.docker.com/linux/static/st
 
 # codeclimate cover reporter
 ADD https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 /usr/local/bin/test-reporter
+
+# install minio
+RUN wget -q https://dl.minio.io/client/mc/release/linux-amd64/mc -O /usr/local/bin/mc \
+    && chmod 777 /usr/local/bin/mc \
+    && upx -qq --best -lzma /usr/local/bin/mc
