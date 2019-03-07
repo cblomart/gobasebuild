@@ -28,7 +28,11 @@ RUN export STATICCHECK_VERSION=$(curl -sf "https://api.github.com/repos/dominikh
     && wget -q $STATICCHECK_URL -O /usr/local/bin/staticcheck \
     && chmod +x /usr/local/bin/staticcheck \
     && upx -qq --best --lzma /usr/local/bin/staticcheck
-    
+
+# install minio
+RUN wget -q https://dl.minio.io/server/minio/release/linux-amd64/minio -O /usr/local/bin/minio \
+    && upx -qq --best -lzma /usr/local/bin/minio
+
 # install golang checkers
 RUN export CGO=0;\
     go get -ldflags '-s -w' -a github.com/cblomart/git-version;\
