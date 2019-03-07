@@ -60,4 +60,4 @@ ADD https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-a
 # install minio
 RUN wget -q https://dl.minio.io/client/mc/release/linux-amd64/mc -O /usr/local/bin/mc \
     && chmod 777 /usr/local/bin/mc \
-    && upx -qq --best -lzma /usr/local/bin/mc
+    && upx -qq --best --lzma /usr/local/bin/mc
