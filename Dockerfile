@@ -30,8 +30,9 @@ RUN export STATICCHECK_VERSION=$(curl -sf "https://api.github.com/repos/dominikh
     && upx -qq --best --lzma /usr/local/bin/staticcheck
 
 # install minio
-RUN wget -q https://dl.minio.io/server/minio/release/linux-amd64/minio -O /usr/local/bin/minio \
-    && upx -qq --best -lzma /usr/local/bin/minio
+RUN wget -q https://dl.minio.io/client/mc/release/linux-amd64/mc -O /usr/local/bin/mc \
+    && chmod 777 /usr/local/bin/mc
+    && upx -qq --best -lzma /usr/local/bin/mc
 
 # install golang checkers
 RUN export CGO=0;\
