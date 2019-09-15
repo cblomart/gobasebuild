@@ -23,9 +23,10 @@ RUN export UPX_VERSION=$(curl -sf "https://api.github.com/repos/upx/upx/releases
 
 # install the latest version of staticcheck
 RUN export STATICCHECK_VERSION=$(curl -sf "https://api.github.com/repos/dominikh/go-tools/releases/latest" | jq -r .tag_name) \
-    && STATICCHECK_URL="https://github.com/dominikh/go-tools/releases/download/${STATICCHECK_VERSION}/staticcheck_linux_amd64" \
+    && STATICCHECK_URL="https://github.com/dominikh/go-tools/releases/download/${STATICCHECK_VERSION}/staticcheck_linux_amd64.tar.gz" \
     && echo STATICCHECK URL: $STATICCHECK_URL \
-    && wget -q $STATICCHECK_URL -O /usr/local/bin/staticcheck \
+    && curl -SsfL $STATICCHECK_URL | tar -C /tmp -zxf - \
+    && mv /tmp/staticcheck/staticcheck /usr/local/bin/ \
     && chmod +x /usr/local/bin/staticcheck \
     && upx -qq --best --lzma /usr/local/bin/staticcheck
 
