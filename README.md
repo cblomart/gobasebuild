@@ -9,4 +9,4 @@ This image is based on official golang image and will add:
 
 To compress executables with upx
 
-  >`upx -q --best <executable>`
+  >`upx -qq --best <executable>`
