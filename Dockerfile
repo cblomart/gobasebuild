@@ -37,11 +37,21 @@ RUN export CGO=0;\
     go get -ldflags '-s -w' -a github.com/gordonklaus/ineffassign;\
     go get -ldflags '-s -w' -a github.com/securego/gosec/cmd/gosec/...;\
     go get -ldflags '-s -w' -a github.com/dave/courtney;\
+    go get -ldflags '-s -w' -a gitlab.com/opennota/check/cmd/aligncheck;\
+    go get -ldflags '-s -w' -a gitlab.com/opennota/check/cmd/structcheck;\
+    go get -ldflags '-s -w' -a gitlab.com/opennota/check/cmd/varcheck;\
+    go get -ldflags '-s -w' -a github.com/mgechev/revive;\
+    go get -ldflags '-s -w' -a github.com/fzipp/gocyclo/cmd/gocyclo;\
     upx -qq --best --lzma ./bin/git-version;\
     upx -qq --best --lzma ./bin/golint;\
     upx -qq --best --lzma ./bin/ineffassign;\
     upx -qq --best --lzma ./bin/gosec;\
     upx -qq --best --lzma ./bin/courtney;\
+    upx -qq --best --lzma ./bin/aligncheck;\
+    upx -qq --best --lzma ./bin/structcheck;\
+    upx -qq --best --lzma ./bin/varcheck;\
+    upx -qq --best --lzma ./bin/revive;\
+    upx -qq --best --lzma ./bin/gocyclo;\
     cp ./bin/* /usr/local/bin/;\
     rm -rf ./*
 
