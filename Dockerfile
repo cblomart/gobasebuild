@@ -32,16 +32,16 @@ RUN export STATICCHECK_VERSION=$(curl -sf "https://api.github.com/repos/dominikh
 
 # install golang checkers
 RUN export CGO=0;\
-    go install -ldflags '-s -w' -a github.com/cblomart/git-version;\
-    go install -ldflags '-s -w' -a golang.org/x/lint/golint;\
-    go install -ldflags '-s -w' -a github.com/gordonklaus/ineffassign;\
-    go install -ldflags '-s -w' -a github.com/securego/gosec/cmd/gosec/...;\
-    go install -ldflags '-s -w' -a github.com/dave/courtney;\
-    go install -ldflags '-s -w' -a gitlab.com/opennota/check/cmd/aligncheck;\
-    go install -ldflags '-s -w' -a gitlab.com/opennota/check/cmd/structcheck;\
-    go install -ldflags '-s -w' -a gitlab.com/opennota/check/cmd/varcheck;\
-    go install -ldflags '-s -w' -a github.com/mgechev/revive;\
-    go install -ldflags '-s -w' -a github.com/fzipp/gocyclo/cmd/gocyclo;\
+    go install -ldflags '-s -w' -a github.com/cblomart/git-version@latest;\
+    go install -ldflags '-s -w' -a golang.org/x/lint/golint@latest;\
+    go install -ldflags '-s -w' -a github.com/gordonklaus/ineffassign@latest;\
+    go install -ldflags '-s -w' -a github.com/securego/gosec/v2/cmd/gosec@latest;\
+    go install -ldflags '-s -w' -a github.com/dave/courtney@latest;\
+    go install -ldflags '-s -w' -a gitlab.com/opennota/check/cmd/aligncheck@latest;\
+    go install -ldflags '-s -w' -a gitlab.com/opennota/check/cmd/structcheck@latest;\
+    go install -ldflags '-s -w' -a gitlab.com/opennota/check/cmd/varcheck@latest;\
+    go install -ldflags '-s -w' -a github.com/mgechev/revive@latest;\
+    go install -ldflags '-s -w' -a github.com/fzipp/gocyclo/cmd/gocyclo@latest;\
     upx -qq --best --lzma ./bin/git-version;\
     upx -qq --best --lzma ./bin/golint;\
     upx -qq --best --lzma ./bin/ineffassign;\
